@@ -1,0 +1,2702 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>54 Card Tattoo Chronicle</title>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --text: #000000;
+      --red: #c51d2a;
+      --border: #C4D4E0;
+      --focus: #2668A4;
+      --radius: 14px;
+
+      /* =========================================================
+         PERSON NAMES
+         Add names ONLY in this section.
+         Example: --name-QH: "Jamie Smith";
+         Leave quotation marks empty if you do not want a name shown.
+         ========================================================= */
+      --name-AS: "";
+      --name-2S: "";
+      --name-3S: "";
+      --name-4S: "";
+      --name-5S: "";
+      --name-6S: "";
+      --name-7S: "";
+      --name-8S: "";
+      --name-9S: "";
+      --name-10S: "";
+      --name-JS: "";
+      --name-QS: "";
+      --name-KS: "";
+      --name-AH: "";
+      --name-2H: "";
+      --name-3H: "";
+      --name-4H: "";
+      --name-5H: "";
+      --name-6H: "";
+      --name-7H: "";
+      --name-8H: "";
+      --name-9H: "";
+      --name-10H: "";
+      --name-JH: "";
+      --name-QH: "";
+      --name-KH: "";
+      --name-AD: "";
+      --name-2D: "";
+      --name-3D: "";
+      --name-4D: "";
+      --name-5D: "";
+      --name-6D: "";
+      --name-7D: "";
+      --name-8D: "";
+      --name-9D: "";
+      --name-10D: "";
+      --name-JD: "";
+      --name-QD: "";
+      --name-KD: "";
+      --name-AC: "";
+      --name-2C: "";
+      --name-3C: "";
+      --name-4C: "";
+      --name-5C: "";
+      --name-6C: "";
+      --name-7C: "";
+      --name-8C: "";
+      --name-9C: "";
+      --name-10C: "";
+      --name-JC: "";
+      --name-QC: "";
+      --name-KC: "";
+      --name-JOKER-R: "";
+      --name-JOKER-B: "";
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .site-header {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 36px 28px 12px;
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+    }
+
+    .intro {
+      margin: 10px 0 0;
+      color: #444;
+    }
+
+    main {
+      padding: 22px 28px 56px;
+    }
+
+    .deck {
+      max-width: 1500px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(13, minmax(82px, 1fr));
+      gap: 14px;
+    }
+
+    .card-wrap {
+      position: relative;
+      aspect-ratio: 5 / 7;
+    }
+
+    .card-toggle {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .card {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      perspective: 1200px;
+      border-radius: var(--radius);
+    }
+
+    .card-toggle:focus-visible + .card {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .card-inner {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform .55s cubic-bezier(.2,.75,.25,1);
+    }
+
+    .card-toggle:checked + .card .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #f5f7f8;
+      box-shadow: 0 8px 24px rgba(0,0,0,.10);
+      backface-visibility: hidden;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    .placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-size: .72rem;
+      letter-spacing: .08em;
+      color: #7a8792;
+      background: #f5f7f8;
+    }
+
+    .card-face img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #f5f7f8;
+    }
+
+    .card-badge {
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      min-width: 42px;
+      padding: 6px 8px;
+      border-radius: 9px;
+      background: rgba(255,255,255,.95);
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .card-badge.red { color: var(--red); }
+    .card-badge.black { color: #000000; }
+    .rank, .suit { font-size: 1rem; }
+
+    .zoom-button {
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      z-index: 10;
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,.96);
+      color: #000;
+      text-decoration: none;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,.22);
+      cursor: zoom-in;
+    }
+
+    .zoom-button:hover,
+    .zoom-button:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Only show the zoom control for the side currently facing the viewer. */
+    .zoom-tattoo {
+      display: none;
+    }
+
+    .card-toggle:checked ~ .zoom-person {
+      display: none;
+    }
+
+    .card-toggle:checked ~ .zoom-tattoo {
+      display: grid;
+    }
+
+    /* Pure HTML/CSS lightbox using :target. */
+    .zoom-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(0,0,0,.86);
+    }
+
+    .zoom-overlay:target {
+      display: flex;
+    }
+
+    .zoom-dismiss {
+      position: absolute;
+      inset: 0;
+      cursor: zoom-out;
+    }
+
+    .zoom-panel {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: min(92vw, 1200px);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .zoom-panel img {
+      display: block;
+      max-width: 92vw;
+      max-height: 82vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+    }
+
+    .zoom-panel figcaption {
+      color: #fff;
+      font-size: .95rem;
+      text-align: center;
+    }
+
+    .person-caption::before {
+      content: var(--person-name);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .person-caption:empty {
+      min-height: 0;
+    }
+
+    .zoom-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+      font-size: 1.6rem;
+      line-height: 1;
+      box-shadow: 0 3px 12px rgba(0,0,0,.3);
+    }
+
+    @media (max-width: 1200px) {
+      .deck { grid-template-columns: repeat(9, minmax(82px, 1fr)); }
+    }
+
+    @media (max-width: 820px) {
+      .deck { grid-template-columns: repeat(5, minmax(72px, 1fr)); }
+      main, .site-header { padding-left: 16px; padding-right: 16px; }
+    }
+
+    @media (max-width: 520px) {
+      .deck { grid-template-columns: repeat(3, minmax(80px, 1fr)); }
+      .zoom-overlay { padding: 16px; }
+      .zoom-close { top: -14px; right: -8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card-inner { transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <p class="eyebrow">54 Card Tattoo Chronicle</p>
+    <h1>Playing Card Tattoo Deck</h1>
+    <p class="intro">Click anywhere on a card to flip between the person and their tattoo. Use the + button to enlarge the visible image. Names appear only when a profile photo is enlarged.</p>
+  </header>
+
+  <main>
+    <section class="deck" aria-label="Playing card tattoo collection">
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-AS" aria-label="Ace of Spades. Flip card.">
+      <label class="card" for="card-AS" title="Ace of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/AS.jpg" alt="Ace of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">A</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/AS.jpg" alt="Ace of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">A</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-AS" aria-label="Enlarge person photo for Ace of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-AS" aria-label="Enlarge tattoo photo for Ace of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-2S" aria-label="2 of Spades. Flip card.">
+      <label class="card" for="card-2S" title="2 of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/2S.jpg" alt="2 of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">2</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/2S.jpg" alt="2 of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">2</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-2S" aria-label="Enlarge person photo for 2 of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-2S" aria-label="Enlarge tattoo photo for 2 of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-3S" aria-label="3 of Spades. Flip card.">
+      <label class="card" for="card-3S" title="3 of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/3S.jpg" alt="3 of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">3</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/3S.jpg" alt="3 of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">3</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-3S" aria-label="Enlarge person photo for 3 of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-3S" aria-label="Enlarge tattoo photo for 3 of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-4S" aria-label="4 of Spades. Flip card.">
+      <label class="card" for="card-4S" title="4 of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/4S.jpg" alt="4 of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">4</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/4S.jpg" alt="4 of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">4</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-4S" aria-label="Enlarge person photo for 4 of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-4S" aria-label="Enlarge tattoo photo for 4 of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-5S" aria-label="5 of Spades. Flip card.">
+      <label class="card" for="card-5S" title="5 of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/5S.jpg" alt="5 of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">5</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/5S.jpg" alt="5 of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">5</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-5S" aria-label="Enlarge person photo for 5 of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-5S" aria-label="Enlarge tattoo photo for 5 of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-6S" aria-label="6 of Spades. Flip card.">
+      <label class="card" for="card-6S" title="6 of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/6S.jpg" alt="6 of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">6</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/6S.jpg" alt="6 of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">6</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-6S" aria-label="Enlarge person photo for 6 of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-6S" aria-label="Enlarge tattoo photo for 6 of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-7S" aria-label="7 of Spades. Flip card.">
+      <label class="card" for="card-7S" title="7 of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/7S.jpg" alt="7 of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">7</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/7S.jpg" alt="7 of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">7</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-7S" aria-label="Enlarge person photo for 7 of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-7S" aria-label="Enlarge tattoo photo for 7 of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-8S" aria-label="8 of Spades. Flip card.">
+      <label class="card" for="card-8S" title="8 of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/8S.jpg" alt="8 of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">8</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/8S.jpg" alt="8 of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">8</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-8S" aria-label="Enlarge person photo for 8 of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-8S" aria-label="Enlarge tattoo photo for 8 of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-9S" aria-label="9 of Spades. Flip card.">
+      <label class="card" for="card-9S" title="9 of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/9S.jpg" alt="9 of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">9</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/9S.jpg" alt="9 of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">9</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-9S" aria-label="Enlarge person photo for 9 of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-9S" aria-label="Enlarge tattoo photo for 9 of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-10S" aria-label="10 of Spades. Flip card.">
+      <label class="card" for="card-10S" title="10 of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/10S.jpg" alt="10 of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">10</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/10S.jpg" alt="10 of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">10</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-10S" aria-label="Enlarge person photo for 10 of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-10S" aria-label="Enlarge tattoo photo for 10 of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-JS" aria-label="Jack of Spades. Flip card.">
+      <label class="card" for="card-JS" title="Jack of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/JS.jpg" alt="Jack of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">J</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/JS.jpg" alt="Jack of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">J</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-JS" aria-label="Enlarge person photo for Jack of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-JS" aria-label="Enlarge tattoo photo for Jack of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-QS" aria-label="Queen of Spades. Flip card.">
+      <label class="card" for="card-QS" title="Queen of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/QS.jpg" alt="Queen of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">Q</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/QS.jpg" alt="Queen of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">Q</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-QS" aria-label="Enlarge person photo for Queen of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-QS" aria-label="Enlarge tattoo photo for Queen of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-KS" aria-label="King of Spades. Flip card.">
+      <label class="card" for="card-KS" title="King of Spades">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/KS.jpg" alt="King of Spades: person">
+            <span class="card-badge black">
+              <span class="rank">K</span><span class="suit">♠</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/KS.jpg" alt="King of Spades: tattoo">
+            <span class="card-badge black">
+              <span class="rank">K</span><span class="suit">♠</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-KS" aria-label="Enlarge person photo for King of Spades">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-KS" aria-label="Enlarge tattoo photo for King of Spades">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-AH" aria-label="Ace of Hearts. Flip card.">
+      <label class="card" for="card-AH" title="Ace of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/AH.jpg" alt="Ace of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">A</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/AH.jpg" alt="Ace of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">A</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-AH" aria-label="Enlarge person photo for Ace of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-AH" aria-label="Enlarge tattoo photo for Ace of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-2H" aria-label="2 of Hearts. Flip card.">
+      <label class="card" for="card-2H" title="2 of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/2H.jpg" alt="2 of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">2</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/2H.jpg" alt="2 of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">2</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-2H" aria-label="Enlarge person photo for 2 of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-2H" aria-label="Enlarge tattoo photo for 2 of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-3H" aria-label="3 of Hearts. Flip card.">
+      <label class="card" for="card-3H" title="3 of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/3H.jpg" alt="3 of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">3</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/3H.jpg" alt="3 of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">3</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-3H" aria-label="Enlarge person photo for 3 of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-3H" aria-label="Enlarge tattoo photo for 3 of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-4H" aria-label="4 of Hearts. Flip card.">
+      <label class="card" for="card-4H" title="4 of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/4H.jpg" alt="4 of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">4</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/4H.jpg" alt="4 of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">4</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-4H" aria-label="Enlarge person photo for 4 of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-4H" aria-label="Enlarge tattoo photo for 4 of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-5H" aria-label="5 of Hearts. Flip card.">
+      <label class="card" for="card-5H" title="5 of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/5H.jpg" alt="5 of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">5</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/5H.jpg" alt="5 of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">5</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-5H" aria-label="Enlarge person photo for 5 of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-5H" aria-label="Enlarge tattoo photo for 5 of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-6H" aria-label="6 of Hearts. Flip card.">
+      <label class="card" for="card-6H" title="6 of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/6H.jpg" alt="6 of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">6</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/6H.jpg" alt="6 of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">6</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-6H" aria-label="Enlarge person photo for 6 of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-6H" aria-label="Enlarge tattoo photo for 6 of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-7H" aria-label="7 of Hearts. Flip card.">
+      <label class="card" for="card-7H" title="7 of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/7H.jpg" alt="7 of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">7</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/7H.jpg" alt="7 of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">7</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-7H" aria-label="Enlarge person photo for 7 of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-7H" aria-label="Enlarge tattoo photo for 7 of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-8H" aria-label="8 of Hearts. Flip card.">
+      <label class="card" for="card-8H" title="8 of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/8H.jpg" alt="8 of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">8</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/8H.jpg" alt="8 of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">8</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-8H" aria-label="Enlarge person photo for 8 of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-8H" aria-label="Enlarge tattoo photo for 8 of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-9H" aria-label="9 of Hearts. Flip card.">
+      <label class="card" for="card-9H" title="9 of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/9H.jpg" alt="9 of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">9</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/9H.jpg" alt="9 of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">9</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-9H" aria-label="Enlarge person photo for 9 of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-9H" aria-label="Enlarge tattoo photo for 9 of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-10H" aria-label="10 of Hearts. Flip card.">
+      <label class="card" for="card-10H" title="10 of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/10H.jpg" alt="10 of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">10</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/10H.jpg" alt="10 of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">10</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-10H" aria-label="Enlarge person photo for 10 of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-10H" aria-label="Enlarge tattoo photo for 10 of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-JH" aria-label="Jack of Hearts. Flip card.">
+      <label class="card" for="card-JH" title="Jack of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/JH.jpg" alt="Jack of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">J</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/JH.jpg" alt="Jack of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">J</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-JH" aria-label="Enlarge person photo for Jack of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-JH" aria-label="Enlarge tattoo photo for Jack of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-QH" aria-label="Queen of Hearts. Flip card.">
+      <label class="card" for="card-QH" title="Queen of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/QH.jpg" alt="Queen of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">Q</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/QH.jpg" alt="Queen of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">Q</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-QH" aria-label="Enlarge person photo for Queen of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-QH" aria-label="Enlarge tattoo photo for Queen of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-KH" aria-label="King of Hearts. Flip card.">
+      <label class="card" for="card-KH" title="King of Hearts">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/KH.jpg" alt="King of Hearts: person">
+            <span class="card-badge red">
+              <span class="rank">K</span><span class="suit">♥</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/KH.jpg" alt="King of Hearts: tattoo">
+            <span class="card-badge red">
+              <span class="rank">K</span><span class="suit">♥</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-KH" aria-label="Enlarge person photo for King of Hearts">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-KH" aria-label="Enlarge tattoo photo for King of Hearts">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-AD" aria-label="Ace of Diamonds. Flip card.">
+      <label class="card" for="card-AD" title="Ace of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/AD.jpg" alt="Ace of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">A</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/AD.jpg" alt="Ace of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">A</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-AD" aria-label="Enlarge person photo for Ace of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-AD" aria-label="Enlarge tattoo photo for Ace of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-2D" aria-label="2 of Diamonds. Flip card.">
+      <label class="card" for="card-2D" title="2 of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/2D.jpg" alt="2 of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">2</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/2D.jpg" alt="2 of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">2</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-2D" aria-label="Enlarge person photo for 2 of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-2D" aria-label="Enlarge tattoo photo for 2 of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-3D" aria-label="3 of Diamonds. Flip card.">
+      <label class="card" for="card-3D" title="3 of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/3D.jpg" alt="3 of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">3</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/3D.jpg" alt="3 of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">3</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-3D" aria-label="Enlarge person photo for 3 of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-3D" aria-label="Enlarge tattoo photo for 3 of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-4D" aria-label="4 of Diamonds. Flip card.">
+      <label class="card" for="card-4D" title="4 of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/4D.jpg" alt="4 of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">4</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/4D.jpg" alt="4 of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">4</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-4D" aria-label="Enlarge person photo for 4 of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-4D" aria-label="Enlarge tattoo photo for 4 of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-5D" aria-label="5 of Diamonds. Flip card.">
+      <label class="card" for="card-5D" title="5 of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/5D.jpg" alt="5 of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">5</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/5D.jpg" alt="5 of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">5</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-5D" aria-label="Enlarge person photo for 5 of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-5D" aria-label="Enlarge tattoo photo for 5 of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-6D" aria-label="6 of Diamonds. Flip card.">
+      <label class="card" for="card-6D" title="6 of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/6D.jpg" alt="6 of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">6</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/6D.jpg" alt="6 of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">6</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-6D" aria-label="Enlarge person photo for 6 of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-6D" aria-label="Enlarge tattoo photo for 6 of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-7D" aria-label="7 of Diamonds. Flip card.">
+      <label class="card" for="card-7D" title="7 of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/7D.jpg" alt="7 of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">7</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/7D.jpg" alt="7 of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">7</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-7D" aria-label="Enlarge person photo for 7 of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-7D" aria-label="Enlarge tattoo photo for 7 of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-8D" aria-label="8 of Diamonds. Flip card.">
+      <label class="card" for="card-8D" title="8 of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/8D.jpg" alt="8 of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">8</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/8D.jpg" alt="8 of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">8</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-8D" aria-label="Enlarge person photo for 8 of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-8D" aria-label="Enlarge tattoo photo for 8 of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-9D" aria-label="9 of Diamonds. Flip card.">
+      <label class="card" for="card-9D" title="9 of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/9D.jpg" alt="9 of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">9</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/9D.jpg" alt="9 of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">9</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-9D" aria-label="Enlarge person photo for 9 of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-9D" aria-label="Enlarge tattoo photo for 9 of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-10D" aria-label="10 of Diamonds. Flip card.">
+      <label class="card" for="card-10D" title="10 of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/10D.jpg" alt="10 of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">10</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/10D.jpg" alt="10 of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">10</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-10D" aria-label="Enlarge person photo for 10 of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-10D" aria-label="Enlarge tattoo photo for 10 of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-JD" aria-label="Jack of Diamonds. Flip card.">
+      <label class="card" for="card-JD" title="Jack of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/JD.jpg" alt="Jack of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">J</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/JD.jpg" alt="Jack of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">J</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-JD" aria-label="Enlarge person photo for Jack of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-JD" aria-label="Enlarge tattoo photo for Jack of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-QD" aria-label="Queen of Diamonds. Flip card.">
+      <label class="card" for="card-QD" title="Queen of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/QD.jpg" alt="Queen of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">Q</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/QD.jpg" alt="Queen of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">Q</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-QD" aria-label="Enlarge person photo for Queen of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-QD" aria-label="Enlarge tattoo photo for Queen of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-KD" aria-label="King of Diamonds. Flip card.">
+      <label class="card" for="card-KD" title="King of Diamonds">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/KD.jpg" alt="King of Diamonds: person">
+            <span class="card-badge red">
+              <span class="rank">K</span><span class="suit">♦</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/KD.jpg" alt="King of Diamonds: tattoo">
+            <span class="card-badge red">
+              <span class="rank">K</span><span class="suit">♦</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-KD" aria-label="Enlarge person photo for King of Diamonds">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-KD" aria-label="Enlarge tattoo photo for King of Diamonds">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-AC" aria-label="Ace of Clubs. Flip card.">
+      <label class="card" for="card-AC" title="Ace of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/AC.jpg" alt="Ace of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">A</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/AC.jpg" alt="Ace of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">A</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-AC" aria-label="Enlarge person photo for Ace of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-AC" aria-label="Enlarge tattoo photo for Ace of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-2C" aria-label="2 of Clubs. Flip card.">
+      <label class="card" for="card-2C" title="2 of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/2C.jpg" alt="2 of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">2</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/2C.jpg" alt="2 of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">2</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-2C" aria-label="Enlarge person photo for 2 of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-2C" aria-label="Enlarge tattoo photo for 2 of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-3C" aria-label="3 of Clubs. Flip card.">
+      <label class="card" for="card-3C" title="3 of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/3C.jpg" alt="3 of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">3</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/3C.jpg" alt="3 of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">3</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-3C" aria-label="Enlarge person photo for 3 of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-3C" aria-label="Enlarge tattoo photo for 3 of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-4C" aria-label="4 of Clubs. Flip card.">
+      <label class="card" for="card-4C" title="4 of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/4C.jpg" alt="4 of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">4</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/4C.jpg" alt="4 of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">4</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-4C" aria-label="Enlarge person photo for 4 of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-4C" aria-label="Enlarge tattoo photo for 4 of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-5C" aria-label="5 of Clubs. Flip card.">
+      <label class="card" for="card-5C" title="5 of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/5C.jpg" alt="5 of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">5</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/5C.jpg" alt="5 of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">5</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-5C" aria-label="Enlarge person photo for 5 of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-5C" aria-label="Enlarge tattoo photo for 5 of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-6C" aria-label="6 of Clubs. Flip card.">
+      <label class="card" for="card-6C" title="6 of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/6C.jpg" alt="6 of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">6</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/6C.jpg" alt="6 of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">6</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-6C" aria-label="Enlarge person photo for 6 of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-6C" aria-label="Enlarge tattoo photo for 6 of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-7C" aria-label="7 of Clubs. Flip card.">
+      <label class="card" for="card-7C" title="7 of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/7C.jpg" alt="7 of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">7</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/7C.jpg" alt="7 of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">7</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-7C" aria-label="Enlarge person photo for 7 of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-7C" aria-label="Enlarge tattoo photo for 7 of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-8C" aria-label="8 of Clubs. Flip card.">
+      <label class="card" for="card-8C" title="8 of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/8C.jpg" alt="8 of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">8</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/8C.jpg" alt="8 of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">8</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-8C" aria-label="Enlarge person photo for 8 of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-8C" aria-label="Enlarge tattoo photo for 8 of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-9C" aria-label="9 of Clubs. Flip card.">
+      <label class="card" for="card-9C" title="9 of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/9C.jpg" alt="9 of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">9</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/9C.jpg" alt="9 of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">9</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-9C" aria-label="Enlarge person photo for 9 of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-9C" aria-label="Enlarge tattoo photo for 9 of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-10C" aria-label="10 of Clubs. Flip card.">
+      <label class="card" for="card-10C" title="10 of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/10C.jpg" alt="10 of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">10</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/10C.jpg" alt="10 of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">10</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-10C" aria-label="Enlarge person photo for 10 of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-10C" aria-label="Enlarge tattoo photo for 10 of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-JC" aria-label="Jack of Clubs. Flip card.">
+      <label class="card" for="card-JC" title="Jack of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/JC.jpg" alt="Jack of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">J</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/JC.jpg" alt="Jack of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">J</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-JC" aria-label="Enlarge person photo for Jack of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-JC" aria-label="Enlarge tattoo photo for Jack of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-QC" aria-label="Queen of Clubs. Flip card.">
+      <label class="card" for="card-QC" title="Queen of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/QC.jpg" alt="Queen of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">Q</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/QC.jpg" alt="Queen of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">Q</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-QC" aria-label="Enlarge person photo for Queen of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-QC" aria-label="Enlarge tattoo photo for Queen of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-KC" aria-label="King of Clubs. Flip card.">
+      <label class="card" for="card-KC" title="King of Clubs">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/KC.jpg" alt="King of Clubs: person">
+            <span class="card-badge black">
+              <span class="rank">K</span><span class="suit">♣</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/KC.jpg" alt="King of Clubs: tattoo">
+            <span class="card-badge black">
+              <span class="rank">K</span><span class="suit">♣</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-KC" aria-label="Enlarge person photo for King of Clubs">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-KC" aria-label="Enlarge tattoo photo for King of Clubs">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-JOKER-R" aria-label="Red Joker. Flip card.">
+      <label class="card" for="card-JOKER-R" title="Red Joker">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/JOKER-R.jpg" alt="Red Joker: person">
+            <span class="card-badge red">
+              <span class="rank">JKR</span><span class="suit">★</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/JOKER-R.jpg" alt="Red Joker: tattoo">
+            <span class="card-badge red">
+              <span class="rank">JKR</span><span class="suit">★</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-JOKER-R" aria-label="Enlarge person photo for Red Joker">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-JOKER-R" aria-label="Enlarge tattoo photo for Red Joker">+</a>
+    </div>
+
+    <div class="card-wrap">
+      <input class="card-toggle" type="checkbox" id="card-JOKER-B" aria-label="Black Joker. Flip card.">
+      <label class="card" for="card-JOKER-B" title="Black Joker">
+        <span class="card-inner">
+          <span class="card-face card-front">
+            <span class="placeholder">PERSON</span>
+            <img src="images/people/JOKER-B.jpg" alt="Black Joker: person">
+            <span class="card-badge black">
+              <span class="rank">JKR</span><span class="suit">★</span>
+            </span>
+          </span>
+          <span class="card-face card-back">
+            <span class="placeholder">TATTOO</span>
+            <img src="images/tattoos/JOKER-B.jpg" alt="Black Joker: tattoo">
+            <span class="card-badge black">
+              <span class="rank">JKR</span><span class="suit">★</span>
+            </span>
+          </span>
+        </span>
+      </label>
+
+      <a class="zoom-button zoom-person" href="#zoom-person-JOKER-B" aria-label="Enlarge person photo for Black Joker">+</a>
+      <a class="zoom-button zoom-tattoo" href="#zoom-tattoo-JOKER-B" aria-label="Enlarge tattoo photo for Black Joker">+</a>
+    </div>
+    </section>
+  </main>
+
+
+  <div class="zoom-overlay" id="zoom-person-AS">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/AS.jpg" alt="Ace of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-AS);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-AS">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/AS.jpg" alt="Ace of Spades: enlarged tattoo photo">
+      <figcaption>Ace of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-2S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/2S.jpg" alt="2 of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-2S);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-2S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/2S.jpg" alt="2 of Spades: enlarged tattoo photo">
+      <figcaption>2 of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-3S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/3S.jpg" alt="3 of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-3S);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-3S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/3S.jpg" alt="3 of Spades: enlarged tattoo photo">
+      <figcaption>3 of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-4S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/4S.jpg" alt="4 of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-4S);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-4S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/4S.jpg" alt="4 of Spades: enlarged tattoo photo">
+      <figcaption>4 of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-5S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/5S.jpg" alt="5 of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-5S);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-5S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/5S.jpg" alt="5 of Spades: enlarged tattoo photo">
+      <figcaption>5 of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-6S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/6S.jpg" alt="6 of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-6S);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-6S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/6S.jpg" alt="6 of Spades: enlarged tattoo photo">
+      <figcaption>6 of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-7S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/7S.jpg" alt="7 of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-7S);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-7S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/7S.jpg" alt="7 of Spades: enlarged tattoo photo">
+      <figcaption>7 of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-8S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/8S.jpg" alt="8 of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-8S);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-8S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/8S.jpg" alt="8 of Spades: enlarged tattoo photo">
+      <figcaption>8 of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-9S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/9S.jpg" alt="9 of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-9S);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-9S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/9S.jpg" alt="9 of Spades: enlarged tattoo photo">
+      <figcaption>9 of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-10S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/10S.jpg" alt="10 of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-10S);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-10S">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/10S.jpg" alt="10 of Spades: enlarged tattoo photo">
+      <figcaption>10 of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-JS">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/JS.jpg" alt="Jack of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-JS);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-JS">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/JS.jpg" alt="Jack of Spades: enlarged tattoo photo">
+      <figcaption>Jack of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-QS">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/QS.jpg" alt="Queen of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-QS);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-QS">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/QS.jpg" alt="Queen of Spades: enlarged tattoo photo">
+      <figcaption>Queen of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-KS">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/KS.jpg" alt="King of Spades: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-KS);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-KS">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/KS.jpg" alt="King of Spades: enlarged tattoo photo">
+      <figcaption>King of Spades · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-AH">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/AH.jpg" alt="Ace of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-AH);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-AH">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/AH.jpg" alt="Ace of Hearts: enlarged tattoo photo">
+      <figcaption>Ace of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-2H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/2H.jpg" alt="2 of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-2H);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-2H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/2H.jpg" alt="2 of Hearts: enlarged tattoo photo">
+      <figcaption>2 of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-3H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/3H.jpg" alt="3 of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-3H);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-3H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/3H.jpg" alt="3 of Hearts: enlarged tattoo photo">
+      <figcaption>3 of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-4H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/4H.jpg" alt="4 of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-4H);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-4H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/4H.jpg" alt="4 of Hearts: enlarged tattoo photo">
+      <figcaption>4 of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-5H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/5H.jpg" alt="5 of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-5H);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-5H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/5H.jpg" alt="5 of Hearts: enlarged tattoo photo">
+      <figcaption>5 of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-6H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/6H.jpg" alt="6 of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-6H);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-6H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/6H.jpg" alt="6 of Hearts: enlarged tattoo photo">
+      <figcaption>6 of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-7H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/7H.jpg" alt="7 of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-7H);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-7H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/7H.jpg" alt="7 of Hearts: enlarged tattoo photo">
+      <figcaption>7 of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-8H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/8H.jpg" alt="8 of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-8H);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-8H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/8H.jpg" alt="8 of Hearts: enlarged tattoo photo">
+      <figcaption>8 of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-9H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/9H.jpg" alt="9 of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-9H);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-9H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/9H.jpg" alt="9 of Hearts: enlarged tattoo photo">
+      <figcaption>9 of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-10H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/10H.jpg" alt="10 of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-10H);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-10H">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/10H.jpg" alt="10 of Hearts: enlarged tattoo photo">
+      <figcaption>10 of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-JH">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/JH.jpg" alt="Jack of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-JH);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-JH">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/JH.jpg" alt="Jack of Hearts: enlarged tattoo photo">
+      <figcaption>Jack of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-QH">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/QH.jpg" alt="Queen of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-QH);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-QH">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/QH.jpg" alt="Queen of Hearts: enlarged tattoo photo">
+      <figcaption>Queen of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-KH">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/KH.jpg" alt="King of Hearts: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-KH);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-KH">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/KH.jpg" alt="King of Hearts: enlarged tattoo photo">
+      <figcaption>King of Hearts · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-AD">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/AD.jpg" alt="Ace of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-AD);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-AD">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/AD.jpg" alt="Ace of Diamonds: enlarged tattoo photo">
+      <figcaption>Ace of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-2D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/2D.jpg" alt="2 of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-2D);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-2D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/2D.jpg" alt="2 of Diamonds: enlarged tattoo photo">
+      <figcaption>2 of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-3D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/3D.jpg" alt="3 of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-3D);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-3D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/3D.jpg" alt="3 of Diamonds: enlarged tattoo photo">
+      <figcaption>3 of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-4D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/4D.jpg" alt="4 of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-4D);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-4D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/4D.jpg" alt="4 of Diamonds: enlarged tattoo photo">
+      <figcaption>4 of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-5D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/5D.jpg" alt="5 of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-5D);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-5D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/5D.jpg" alt="5 of Diamonds: enlarged tattoo photo">
+      <figcaption>5 of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-6D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/6D.jpg" alt="6 of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-6D);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-6D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/6D.jpg" alt="6 of Diamonds: enlarged tattoo photo">
+      <figcaption>6 of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-7D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/7D.jpg" alt="7 of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-7D);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-7D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/7D.jpg" alt="7 of Diamonds: enlarged tattoo photo">
+      <figcaption>7 of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-8D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/8D.jpg" alt="8 of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-8D);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-8D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/8D.jpg" alt="8 of Diamonds: enlarged tattoo photo">
+      <figcaption>8 of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-9D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/9D.jpg" alt="9 of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-9D);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-9D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/9D.jpg" alt="9 of Diamonds: enlarged tattoo photo">
+      <figcaption>9 of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-10D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/10D.jpg" alt="10 of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-10D);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-10D">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/10D.jpg" alt="10 of Diamonds: enlarged tattoo photo">
+      <figcaption>10 of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-JD">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/JD.jpg" alt="Jack of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-JD);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-JD">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/JD.jpg" alt="Jack of Diamonds: enlarged tattoo photo">
+      <figcaption>Jack of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-QD">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/QD.jpg" alt="Queen of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-QD);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-QD">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/QD.jpg" alt="Queen of Diamonds: enlarged tattoo photo">
+      <figcaption>Queen of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-KD">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/KD.jpg" alt="King of Diamonds: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-KD);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-KD">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/KD.jpg" alt="King of Diamonds: enlarged tattoo photo">
+      <figcaption>King of Diamonds · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-AC">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/AC.jpg" alt="Ace of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-AC);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-AC">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/AC.jpg" alt="Ace of Clubs: enlarged tattoo photo">
+      <figcaption>Ace of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-2C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/2C.jpg" alt="2 of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-2C);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-2C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/2C.jpg" alt="2 of Clubs: enlarged tattoo photo">
+      <figcaption>2 of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-3C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/3C.jpg" alt="3 of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-3C);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-3C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/3C.jpg" alt="3 of Clubs: enlarged tattoo photo">
+      <figcaption>3 of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-4C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/4C.jpg" alt="4 of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-4C);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-4C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/4C.jpg" alt="4 of Clubs: enlarged tattoo photo">
+      <figcaption>4 of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-5C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/5C.jpg" alt="5 of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-5C);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-5C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/5C.jpg" alt="5 of Clubs: enlarged tattoo photo">
+      <figcaption>5 of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-6C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/6C.jpg" alt="6 of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-6C);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-6C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/6C.jpg" alt="6 of Clubs: enlarged tattoo photo">
+      <figcaption>6 of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-7C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/7C.jpg" alt="7 of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-7C);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-7C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/7C.jpg" alt="7 of Clubs: enlarged tattoo photo">
+      <figcaption>7 of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-8C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/8C.jpg" alt="8 of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-8C);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-8C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/8C.jpg" alt="8 of Clubs: enlarged tattoo photo">
+      <figcaption>8 of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-9C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/9C.jpg" alt="9 of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-9C);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-9C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/9C.jpg" alt="9 of Clubs: enlarged tattoo photo">
+      <figcaption>9 of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-10C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/10C.jpg" alt="10 of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-10C);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-10C">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/10C.jpg" alt="10 of Clubs: enlarged tattoo photo">
+      <figcaption>10 of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-JC">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/JC.jpg" alt="Jack of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-JC);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-JC">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/JC.jpg" alt="Jack of Clubs: enlarged tattoo photo">
+      <figcaption>Jack of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-QC">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/QC.jpg" alt="Queen of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-QC);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-QC">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/QC.jpg" alt="Queen of Clubs: enlarged tattoo photo">
+      <figcaption>Queen of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-KC">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/KC.jpg" alt="King of Clubs: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-KC);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-KC">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/KC.jpg" alt="King of Clubs: enlarged tattoo photo">
+      <figcaption>King of Clubs · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-JOKER-R">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/JOKER-R.jpg" alt="Red Joker: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-JOKER-R);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-JOKER-R">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/JOKER-R.jpg" alt="Red Joker: enlarged tattoo photo">
+      <figcaption>Red Joker · Tattoo</figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-person-JOKER-B">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/people/JOKER-B.jpg" alt="Black Joker: enlarged person photo">
+      <figcaption class="person-caption" style="--person-name: var(--name-JOKER-B);"></figcaption>
+    </figure>
+  </div>
+
+  <div class="zoom-overlay" id="zoom-tattoo-JOKER-B">
+    <a class="zoom-dismiss" href="#" aria-label="Close enlarged image"></a>
+    <figure class="zoom-panel">
+      <a class="zoom-close" href="#" aria-label="Close enlarged image">×</a>
+      <img src="images/tattoos/JOKER-B.jpg" alt="Black Joker: enlarged tattoo photo">
+      <figcaption>Black Joker · Tattoo</figcaption>
+    </figure>
+  </div>
+
+</body>
+</html>
